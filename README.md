@@ -63,7 +63,7 @@ Sistema completo para gerenciamento de propriedades rurais, produtores e safras.
 - cd frontend
 - npm install
 - npm run dev
-- O backend estará disponível em http://localhost:5173
+- O frontend estará disponível em http://localhost:5173
 
 ## Testes
 
