@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PropertiesPage from './pages/PropertiesPage';
 import HarvestPage from './pages/HarvestPage';
+import DashboardPage from './pages/DashboardPage';
 
 const Layout = styled.div`
   display: flex;
@@ -89,11 +90,6 @@ const SidebarToggle = styled.div`
   }
 `;
 
-const Dashboard = () => <h2>Dashboard - Bem vindo!</h2>;
-const Producers = () => <h2>Produtores</h2>;
-const Properties = () => <h2>Propriedades</h2>;
-const Harvests = () => <h2>Safras</h2>;
-
 const App: React.FC = () => {
   const [cadastrosExpanded, setCadastrosExpanded] = useState(false);
 
@@ -124,7 +120,7 @@ const App: React.FC = () => {
 
         <Content>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<DashboardPage />} />
             <Route path="/producers" element={<ProducersPage />} />
             <Route path="/properties" element={<PropertiesPage />} />
             <Route path="/harvests" element={<HarvestPage />} />

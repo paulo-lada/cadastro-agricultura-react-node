@@ -16,42 +16,11 @@ import { fetchEstados, fetchCidadesPorEstado } from '../utils/ibgeService';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../redux/store';
 import { isValidCNPJ, isValidCPF } from '../utils/validators';
-
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`;
-
-const TitleBar = styled.div`
-  background-color: #2f7a2f;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-`;
-
-const ContentWrapper = styled.div`
-  flex: 1;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
-`;
-
-const SearchInput = styled.input`
-  width: 300px;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  outline: none;
-`;
+import { TitleBar } from '../components/TitleBar';
+import { PageContainer } from '../components/PageContainer';
+import { NoResult } from '../components/NoResult';
+import { ContentWrapper } from '../components/ContentWrapper';
+import { SearchContainer, SearchInput, AddButton } from '../components/SearchComponent';
 
 const ProducerSearchInput = styled.input`
   width: 84%;
@@ -59,20 +28,6 @@ const ProducerSearchInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
   outline: none;
-`;
-
-const AddButton = styled.button`
-  padding: 0.5rem 1rem;
-  background-color: #2f7a2f;
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #1f5a1f;
-  }
 `;
 
 const ProducerSearchWrapper = styled.div`
@@ -213,12 +168,6 @@ const StyledButton = styled.button`
   }
 `;
 
-const NoResult = styled.div`
-  text-align: center;
-  margin-top: 2rem;
-  color: #666;
-  font-size: 1.2rem;
-`;
 
 const PropertiesPage: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -236,7 +185,7 @@ const PropertiesPage: React.FC = () => {
     const [newTotal, setNewTotal] = useState('');
     const [newAgricultavel, setNewAgricultavel] = useState('');
     const [newVegetacao, setNewVegetacao] = useState('');
-    const [produtorResultados, setProdutorResultados] = useState<any[]>([]);
+    const [produtorResultados, setProdutorResultados] = useState<Producer[]>([]);
     const [editId, setEditId] = useState<string | null>(null);
     const [selectedProdutor, setSelectedProdutor] = useState<any | null>(null);
     const [newCpf, setNewCpf] = useState('');
@@ -393,7 +342,7 @@ const PropertiesPage: React.FC = () => {
     const handleEdit = (p: any) => {
         const property = items.find(prop => prop.id === p.id);
         if (!property) return;
-        
+
         setEditId(p.id);
         setNewNome(p.nome);
         setNewTotal(p.areaTotal.toString());
@@ -429,8 +378,6 @@ const PropertiesPage: React.FC = () => {
         setProducerSearchTerm('');
         setSelectedProdutor(null);
     };
-
-
 
     const handleProducerAdd = async () => {
         if (!newNome.trim() || !newCpf.trim()) return;

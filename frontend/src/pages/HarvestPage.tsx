@@ -7,56 +7,11 @@ import type { RootState, AppDispatch } from '../redux/store';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`;
-
-const TitleBar = styled.div`
-  background-color: #2f7a2f;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-`;
-
-const ContentWrapper = styled.div`
-  flex: 1;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
-`;
-
-const SearchInput = styled.input`
-  width: 300px;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  outline: none;
-`;
-
-const AddButton = styled.button`
-  padding: 0.5rem 1rem;
-  background-color: #2f7a2f;
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #1f5a1f;
-  }
-`;
+import { TitleBar } from '../components/TitleBar';
+import { PageContainer } from '../components/PageContainer';
+import { NoResult } from '../components/NoResult';
+import { ContentWrapper } from '../components/ContentWrapper';
+import { SearchContainer, SearchInput, AddButton } from '../components/SearchComponent';
 
 const Table = styled.table`
   width: 100%;
@@ -167,14 +122,6 @@ const StyledButton = styled.button`
     }
   }
 `;
-
-const NoResult = styled.div`
-  text-align: center;
-  margin-top: 2rem;
-  color: #666;
-  font-size: 1.2rem;
-`;
-
 
 const PropertySearchInput = styled.input`
     width: 300px;
